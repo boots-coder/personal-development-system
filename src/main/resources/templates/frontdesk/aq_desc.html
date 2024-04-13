@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- 页面meta -->
+  <!--  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>答疑详情</title>
+
+    <th:block th:replace="/backstage/common_resources::common_css"/>
+    <th:block th:replace="/backstage/common_resources::common_js"/>
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+<header th:replace="~{/backstage/common_header::header}"></header>
+<aside th:replace="~{/backstage/common_aside::aside}"></aside>
+<div class="wrapper">
+    <!-- 页面头部 -->
+
+    <!-- 页面头部 /-->
+
+    <!-- 导航侧栏 -->
+
+    <!-- 导航侧栏 /-->
+
+    <!-- 内容区域 -->
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
+
+    <div class="content-wrapper">
+
+        <div class="active tab-pane" id="activity">
+            <!-- Post -->
+            <div class="post">
+                <div class="user-block">
+                    <span class="username">
+                         学生 <a th:text="${aq.stuName}" ></a>问：
+
+                        </span>
+                    <span class="description" th:text="${aq.qdate}">Shared publicly - 7:30 PM today</span>
+                </div>
+                <!-- /.user-block -->
+                <p th:text="${aq.des}">
+                    宇宙是不是无限大？
+                </p>
+
+            </div>
+            <!-- /.post -->
+            <!-- Post -->
+            <div class="post">
+                <div class="user-block">
+                    <span class="username">
+                          <a >老师答疑说：</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description" th:text="${aq.ansdate}">Shared publicly - 7:30 PM today</span>
+                </div>
+                <!-- /.user-block -->
+                <p th:text="${aq.answer}">
+                    这是个有意思的问题
+                </p>
+                <ul class="list-inline">
+
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 添加到常见问题</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- /.post -->
+
+
+
+
+        </div>
+    </div>
+    <!-- @@close -->
+    <!-- 内容区域 /-->
+
+    <!-- 底部导航 -->
+
+    <!-- 底部导航 /-->
+
+</div>
+
+<footer th:replace="~{/backstage/common_footer::footer}"></footer>
+</body>
+
+</html>

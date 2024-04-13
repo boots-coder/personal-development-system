@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>修改个人信息</title>
+    <th:block th:replace="/frontdesk/common_resources::common_css"></th:block>
+    <th:block th:replace="/frontdesk/common_resources::common_js"></th:block>
+</head>
+<body class="hold-transition skin-purple sidebar-mini">
+<header th:replace="~{/frontdesk/stu_common_header::header}"></header>
+<aside th:replace="~{/frontdesk/stu_common_aside::aside}"></aside>
+<div class="wrapper">
+    <div class="content-wrapper">
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                学生管理
+                <small>修改个人信息</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="@{/frontdesk/index}"><i class="fa fa-dashboard"></i> 返回首页</a></li>
+
+            </ol>
+        </section>
+        <!-- 内容头部 /-->
+
+        <!-- 正文区域 -->
+        <section class="content">
+            <form th:action="@{/frontdesk/student/update}" method="post">
+                <input type="hidden" th:value="${studentInfo.sid}" name="sid">
+                <div class="row data-type">
+                    <div class="col-md-2 title">账号</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="账号" name="account" th:value="${studentInfo.stuName}" disabled>
+                    </div>
+
+
+                    <div class="col-md-2 title">密码</div>
+                    <div class="col-md-4 data">
+                        <input type="password" class="form-control" placeholder="密码" name="password" th:value="${studentInfo.password}">
+                    </div>
+
+                    <div class="col-md-2 title">性别</div>
+                    <div class="col-md-4 data">
+                        <select class="form-control" name="sex">
+                            <option >男</option>
+                            <option >女</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 title">学校</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="学校" name="school"th:value="${studentInfo.school}">
+                    </div>
+
+                    <div class="col-md-2 title">昵称</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="昵称" name="account"th:value="${studentInfo.account}">
+                    </div>
+                    <div class="col-md-2 title"></div>
+                    <div class="col-md-10 data text-center">
+                        <button type="submit" class="btn bg-maroon">保存(并重新登录)</button>
+                        <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- 正文区域 /-->
+
+    </div>
+</div>
+<footer th:replace="~{/frontdesk/common_footer::footer}"></footer>
+</body>
+</html>

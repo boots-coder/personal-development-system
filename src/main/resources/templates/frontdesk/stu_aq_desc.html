@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- 页面meta -->
+  <!--  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>答疑详情</title>
+
+    <th:block th:replace="/frontdesk/common_resources::common_css"/>
+    <th:block th:replace="/frontdesk/common_resources::common_js"/>
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+<header th:replace="~{/frontdesk/stu_common_header::header}"></header>
+<aside th:replace="~{/frontdesk/stu_common_aside::aside}"></aside>
+<div class="wrapper">
+    <!-- 页面头部 -->
+
+    <!-- 页面头部 /-->
+
+    <!-- 导航侧栏 -->
+
+    <!-- 导航侧栏 /-->
+
+    <!-- 内容区域 -->
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
+
+    <div class="content-wrapper">
+
+        <div class="active tab-pane" id="activity">
+            <!-- Post -->
+            <div class="post">
+                <div class="user-block">
+                    <span class="username">
+                         学生 <a th:text="${aq.stuName}" ></a>问：
+
+                        </span>
+
+                    <span class="description" th:text="${aq.qdate}">Shared publicly - 7:30 PM today</span>
+                </div>
+                <div class="notice" th:utext="${aq.des}"></div>
+                <!-- /.user-block -->
+              <!--  <p th:text="${aq.des}">
+                    宇宙是不是无限大？
+                </p>-->
+
+            </div>
+            <!-- /.post -->
+            <!-- Post -->
+            <!--<div class="you_need_konw">
+                <span>线路详情</span>
+                <div class="notice" th:utext="${product.productDesc}"></div>
+            </div>-->
+            <div >
+                <div class="user-block">
+                    <span class="username">
+                          <a >老师答疑说：</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description" th:text="${aq.ansdate}">Shared publicly - 7:30 PM today</span>
+                </div>
+                <!-- /.user-block -->
+                <p th:utext="${aq.answer}">
+                    这是个有意思的问题
+                </p>
+                <ul class="list-inline">
+
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 添加到常见问题</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="row data-type">
+
+                <form th:action="@{/frontdesk/stu_answerquestion/marks}" method="post">
+
+                    <div class="col-md-2 title">评分</div>
+                    <div class="col-md-4 data">
+                        <select class="form-control" name="marks">
+                            <option >1</option>
+                            <!--  <option >Java-se</option>-->
+                            <option >2</option>
+                            <option >3</option>
+                            <option >4</option>
+                            <option >5</option>
+                        </select>
+                        <select class="form-control" name="sovelStatus" hidden>
+                            <option value="已解决"></option>
+
+                        </select>
+                        <select class="form-control" name="sol_sta" hidden>
+                            <option value=1></option>
+                        </select>
+                        <!--    默认提交学生名字-->
+
+                        <input type="hidden" class="form-control"  name="stuName"  th:value="${aq.stuName}">
+                        <input type="hidden" class="form-control"  name="ansid"  th:value="${aq.ansid}">
+                        <!--    默认提交提问时间-->
+                        <input type="hidden" class="form-control"  name="qdate"  th:value="${#dates.format(aq.qdate, 'yyyy-MM-dd')}" >
+                        <!--    默认提交类型-->
+
+                        <input type="hidden" class="form-control"  name="cate"  th:value="${aq.cate}">
+
+                        <!--    默认提交回答时间-->
+                        <input type="hidden" class="form-control"  name="ansdate"  th:value="${#dates.format(aq.ansdate, 'yyyy-MM-dd')}" >
+                        <!--    默认问题-->
+                        <input type="hidden" class="form-control"  name="des"  th:value="${aq.des}">
+                        <!--    默认回答-->
+                        <input type="hidden" class="form-control"  name="answer"  th:value="${aq.answer}">
+                    </div>
+
+
+                    <div class="col-md-2 title"></div>
+                    <div class="col-md-10 data text-center">
+                        <button type="submit" class="btn bg-maroon">提交评分</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <a th:href="@{/frontdesk/stu_aq_ask}" class="btn bg-green btn-xs">继续提问</a>
+                <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- @@close -->
+    <!-- 内容区域 /-->
+
+    <!-- 底部导航 -->
+
+    <!-- 底部导航 /-->
+
+</div>
+
+<footer th:replace="~{/frontdesk/common_footer::footer}"></footer>
+</body>
+
+</html>

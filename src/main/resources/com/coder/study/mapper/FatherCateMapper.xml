@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coder.study.mapper.FatherCateMapper">
+
+    <delete id="deleteFatherAllSon" parameterType="int">
+        DELETE
+        FROM catefather_category
+        WHERE fcid = #{fcid}
+    </delete>
+
+    <insert id="addFatherSon">
+        INSERT INTO catefather_category
+        values (#{fcid}, #{cid})
+    </insert>
+
+
+    <!--多表查询-->
+    <!--多表查询-->
+    <!--多表查询-->
+    <!--多表查询-->
+    <!--多表查询-->
+
+
+    <resultMap id="FMapper" type="com.coder.study.pojo.Catefather">
+        <id property="fcid" column="fcid"></id>
+        <result property="fcName" column="fcName"></result>
+        <collection property="cates" column="fcid" ofType="com.coder.study.pojo.Category">
+            <result property="cName" column="cName"></result>
+        </collection>
+    </resultMap>
+    <select id="findDesc1" parameterType="int" resultMap="FMapper">
+        select * FROM
+            catefather
+                LEFT JOIN catefather_category
+                          on catefather.fcid = catefather_category.fcid
+                LEFT JOIN category
+                          on catefather_category.cid = category.cid
+
+        where catefather.fcid = #{fcid}
+    </select>
+
+</mapper>

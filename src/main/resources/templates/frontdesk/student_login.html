@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>学生登录</title>
+	<link rel="stylesheet" type="text/css" href="/frontdesk/css/common.css">
+	<link rel="stylesheet" type="text/css" href="/frontdesk/css/login.css">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<!--导入angularJS文件-->
+	<script src="/frontdesk/js/angular.min.js"></script>
+	<!--导入jquery-->
+	<script src="/frontdesk/js/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+	<!-- 头部 end -->
+	<!--背景-->
+	<section id="login_wrap">
+		<div class="fullscreen-bg" style="background: url(/frontdesk/images/login_bg.jpg);height: 810px;"></div>
+		<div class="login-box">
+			<div class="title">
+				<span>这是一个答疑平台，请登录</span>
+			</div>
+			<div class="login_inner">
+				<!--登录错误提示消息-->
+				<span th:text="${message}" style="color: red"></span>
+				<form id="loginForm" action="/frontdesk/student/login" method="post" accept-charset="utf-8">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-user"></span>
+						</div>
+						<input class="form-control" name="name" type="text" placeholder="请输入用户名" autocomplete="off">
+					</div>
+					<div class="input-group">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-lock"></span>
+						</div>
+						<input class="form-control" name="password" type="text" placeholder="请输入密码" autocomplete="off">
+					</div>
+					<tr>
+						<td class="td_left">
+							<label for="check">验证码</label>
+						</td>
+						<td class="td_right check">
+							<input type="text" id="check" name="checkCode" class="check">
+							<img src="/frontdesk/checkCode" height="32px" alt="" onclick="changeCheckCode(this)">
+							<script type="text/javascript">
+								//图片点击事件
+								function changeCheckCode(img) {
+									// 在方法后添加参数的原因是，如果不添加参数，img.src的属性不会改变，此时浏览器不会
+									// 向服务器发送请求
+									img.src="/frontdesk/checkCode?"+new Date().getTime();
+								}
+							</script>
+						</td>
+					</tr>
+					<div class="option">
+						<div class="register">
+							<a href="/frontdesk/register">学生注册</a>
+						</div>
+					</div>
+					<div class="option">
+						<div class="register">
+							<a href="/frontdesk/teacher_login">我是老师</a>
+						</div>
+					</div>
+					<button type="submit" class="btn">学生登录</button>
+
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/frontdesk/js/jquery-1.11.0.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/frontdesk/js/bootstrap.min.js"></script>
+	<!--导入布局js，共享footer-->
+	<script type="text/javascript" src="/frontdesk/js/include.js"></script>
+</body>
+
+</html>

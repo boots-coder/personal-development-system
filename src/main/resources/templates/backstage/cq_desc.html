@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- 页面meta -->
+  <!--  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>答疑详情</title>
+
+    <th:block th:replace="/backstage/common_resources::common_css"/>
+    <th:block th:replace="/backstage/common_resources::common_js"/>
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+<header th:replace="~{/backstage/common_header::header}"></header>
+<aside th:replace="~{/backstage/common_aside::aside}"></aside>
+<div class="wrapper">
+    <!-- 页面头部 -->
+
+    <!-- 页面头部 /-->
+
+    <!-- 导航侧栏 -->
+
+    <!-- 导航侧栏 /-->
+
+    <!-- 内容区域 -->
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
+
+    <div class="content-wrapper">
+
+        <div class="active tab-pane" id="activity">
+            <!-- Post -->
+            <div class="post">
+                <div class="user-block">
+                    <span class="username">
+                         学生 问：
+
+                        </span>
+
+                </div>
+                <div class="notice" th:utext="${cq.des}"></div>
+                <!-- /.user-block -->
+              <!--  <p th:text="${cq.des}">
+                    宇宙是不是无限大？
+                </p>-->
+
+            </div>
+            <!-- /.post -->
+            <!-- Post -->
+            <!--<div class="you_need_konw">
+                <span>线路详情</span>
+                <div class="notice" th:utext="${product.productDesc}"></div>
+            </div>-->
+            <div >
+                <div class="user-block">
+                    <span class="username">
+                          <a >老师答疑说：</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                </div>
+                <!-- /.user-block -->
+                <p th:utext="${cq.answ}">
+                    这是个有意思的问题
+                </p>
+            </div>
+
+
+            <div>
+                <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- @@close -->
+    <!-- 内容区域 /-->
+
+    <!-- 底部导航 -->
+
+    <!-- 底部导航 /-->
+
+</div>
+
+<footer th:replace="~{/backstage/common_footer::footer}"></footer>
+</body>
+
+</html>

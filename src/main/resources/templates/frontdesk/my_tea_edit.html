@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>修改教师信息</title>
+    <th:block th:replace="/frontdesk/common_resources::common_css"></th:block>
+    <th:block th:replace="/frontdesk/common_resources::common_js"></th:block>
+</head>
+<body class="hold-transition skin-purple sidebar-mini">
+<header th:replace="~{/frontdesk/tea_common_header::header}"></header>
+<aside th:replace="~{/frontdesk/tea_common_aside::aside}"></aside>
+<div class="wrapper">
+    <div class="content-wrapper">
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                教师管理
+                <small>修改教师信息</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="@{/frontdesk/index}"><i class="fa fa-dashboard"></i> 返回首页</a></li>
+                <li><a href="@{/frontdesk/teacher/all}"> 教师管理</a></li>
+                <li class="active">修改教师信息</li>
+            </ol>
+        </section>
+        <!-- 内容头部 /-->
+
+        <!-- 正文区域 -->
+        <section class="content">
+            <form th:action="@{/frontdesk/teacher/update}" method="post">
+                <input type="hidden" th:value="${teacherInfo.tid}" name="tid">
+                <div class="row data-type">
+                    <div class="col-md-2 title">昵称</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="账号" name="account" th:value="${teacherInfo.account}">
+                    </div>
+                    <div class="col-md-2 title">密码</div>
+                    <div class="col-md-4 data">
+                        <input type="password" class="form-control" placeholder="密码" name="password" th:value="${teacherInfo.password}">
+                    </div>
+                    <div class="col-md-2 title">账号</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="姓名" name="teaName" th:value="${teacherInfo.teaName}" disabled>
+                    </div>
+                    <div class="col-md-2 title">性别</div>
+                    <div class="col-md-4 data">
+                        <select class="form-control" name="sex">
+                            <option >男</option>
+                            <option >女</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 title">出生日期</div>
+                    <div class="col-md-4 data">
+                        <input type="date" class="form-control" placeholder="yyyy-MM-dd" name="birthday"th:value="${#dates.format(teacherInfo.birthday,'yyyy-MM-dd')}">
+                    </div>
+                    <div class="col-md-2 title">聘任专业</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="负责区域" name="field" th:value="${teacherInfo.field}" disabled="disabled">
+                        >
+                    </div>
+                    <div class="col-md-2 title">负责区域</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="聘任专业" name="subject" th:value="${teacherInfo.subject}" disabled="disabled">
+
+                    </div>
+                    <div class="col-md-2 title">聘任日期</div>
+                    <div class="col-md-4 data">
+                        <input type="date" class="form-control" placeholder="yyyy-MM-dd" name="birthday"th:value="${#dates.format(teacherInfo.birthday,'yyyy-MM-dd')}">
+                    </div>
+
+                    <div class="col-md-2 title">电话</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="电话" name="phoneNum"th:value="${teacherInfo.phoneNum}">
+                    </div>
+                    <div class="col-md-2 title">是否专职</div>
+                    <div class="col-md-4 data">
+                        <select class="form-control" name="workStatus">
+                            <option >是</option>
+                            <option >否</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 title"></div>
+                    <div class="col-md-10 data text-center">
+                        <button type="submit" class="btn bg-maroon">保存(并重新登录)</button>
+                        <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- 正文区域 /-->
+
+    </div>
+</div>
+<footer th:replace="~{/frontdesk/common_footer::footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- 页面meta -->
+  <!--  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>答疑详情</title>
+
+    <th:block th:replace="/frontdesk/common_resources::common_css"/>
+    <th:block th:replace="/frontdesk/common_resources::common_js"/>
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+<header th:replace="~{/frontdesk/tea_common_header::header}"></header>
+<aside th:replace="~{/frontdesk/tea_common_aside::aside}"></aside>
+<div class="wrapper">
+    <!-- 页面头部 -->
+
+    <!-- 页面头部 /-->
+
+    <!-- 导航侧栏 -->
+
+    <!-- 导航侧栏 /-->
+
+    <!-- 内容区域 -->
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
+
+    <div class="content-wrapper">
+
+        <div class="row data-type">
+
+
+                    <form th:action="@{/frontdesk/tea_commquestion/add}" method="post">
+                        <div class="col-md-2 title">请选择问题父类</div>
+                        <div class="col-md-4 data" >
+                            <select  id="province" class="form-control">
+
+                            </select>
+
+                        </div>
+                        <div class="col-md-2 title">请选择具体类型</div>
+                        <div class="col-md-4 data" >
+                            <select   id="city1"  class="form-control" name="cate">
+
+
+
+                            </select>
+
+                        </div>
+
+                            <input type="hidden" class="form-control"  name="udate"   th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"  >
+
+                            <div class="col-md-2 title" >问题</div>
+                        <div class="col-md-10 data" style="height: 350px">
+                            <div id="div1"></div>
+                            <textarea id="text1" name="des" style="width:100%; height:200px;"   hidden></textarea>
+                            <script>
+                                var E = window.wangEditor
+                                var editor = new E('#div1')
+                                var $text1 = $('#text1')
+                                editor.customConfig.onchange = function (html) {
+                                    // 监控变化，同步更新到 textarea
+                                    $text1.val(html)
+                                }
+                                // 自定义菜单配置
+                                editor.customConfig.menus = [
+                                    'head',  // 标题
+                                    'bold',  // 粗体
+                                    'fontSize',  // 字号
+                                    'fontName',  // 字体
+                                    'italic',  // 斜体
+                                    'underline',  // 下划线
+                                    'foreColor',  // 文字颜色
+                                    'backColor',  // 背景颜色
+                                    'justify',  // 对齐方式
+                                    'image',  // 插入图片
+                                    'undo',  // 撤销
+                                ]
+                                // 配置上传图片服务器端地址
+                                editor.customConfig.uploadImgServer = '/frontdesk/stu_answerquestion/upload';
+                                // 配置上传图片的参数名
+                                editor.customConfig.uploadFileName = 'file';
+                                editor.create()
+                                // 初始化 textarea 的值
+                                $text1.val(editor.txt.html())
+                            </script>
+                        </div>
+
+                        <div class="col-md-2 title" >答案</div>
+                        <div class="col-md-10 data" style="height: 350px">
+                            <div id="div2"></div>
+                            <textarea id="text2" name="answ" style="width:100%; height:200px;"   hidden></textarea>
+                            <script>
+                                var E = window.wangEditor
+                                var editor = new E('#div2')
+                                var $text2 = $('#text2')
+                                editor.customConfig.onchange = function (html) {
+                                    // 监控变化，同步更新到 textarea
+                                    $text2.val(html)
+                                }
+                                // 自定义菜单配置
+                                editor.customConfig.menus = [
+                                    'head',  // 标题
+                                    'bold',  // 粗体
+                                    'fontSize',  // 字号
+                                    'fontName',  // 字体
+                                    'italic',  // 斜体
+                                    'underline',  // 下划线
+                                    'foreColor',  // 文字颜色
+                                    'backColor',  // 背景颜色
+                                    'justify',  // 对齐方式
+                                    'image',  // 插入图片
+                                    'undo',  // 撤销
+                                ]
+                                // 配置上传图片服务器端地址
+                                editor.customConfig.uploadImgServer = '/frontdesk/stu_answerquestion/upload';
+                                // 配置上传图片的参数名
+                                editor.customConfig.uploadFileName = 'file';
+                                editor.create()
+                                // 初始化 textarea 的值
+                                $text2.val(editor.txt.html())
+                            </script>
+                        </div>
+                        <div class="col-md-2 title"></div>
+                        <div class="col-md-10 data text-center">
+                            <button type="submit" class="btn bg-maroon">确定添加</button>
+                            <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+                        </div>
+
+                    </form>
+
+        </div>
+    </div>
+
+    <!-- @@close -->
+    <!-- 内容区域 /-->
+
+    <!-- 底部导航 -->
+
+    <!-- 底部导航 /-->
+
+</div>
+
+<footer th:replace="~{/frontdesk/common_footer::footer}"></footer>
+<script>
+    /*   $(document).ready(function() {
+           /!*table tree*!/
+           $("#collapse-table").treetable({
+               expandable: true
+           });
+
+       });
+   */
+
+    /*
+     $( function () {
+        // 获取所有省
+         alert(123)
+         $.post("/frontdesk/stu_answerquestion/cities",function (data) {
+             console.log(data);
+             if(data != null){
+                 var str = '<option>请选择子类</option>\n';
+                 for (var i = 0;i < data.length;i++) {
+                     str += '<option value='+data[i].id+'>'+ data[i].cName +'</option>\n';
+                 }
+                 $("#citiesss").html(str);
+             }
+         });})*/
+
+    $(function () {
+        // 获取所有省
+        $.post("/frontdesk/stu_answerquestion/provinceList",function (data) {
+            console.log(data);
+            if(data != null){
+                var str = '<option>请选择种类</option>\n';
+                for (var i = 0;i < data.length;i++) {
+                    str += '<option value='+data[i].id+'>'+ data[i].fcName +'</option>\n';
+                }
+                $("#province").html(str);
+            }
+        });
+        // 获取所有市
+        $.post("/frontdesk/stu_answerquestion/cityList",function (data) {
+            console.log(data);
+            if(data != null){
+                var str = '<option>请选择子类</option>\n';
+                for (var i = 0;i < data.length;i++) {
+                    str +=  '<option value='+data[i].fcid+'>'+ data[i].cname +    '</option>\n';
+                }
+                $("#city").html(str);
+            }
+        });
+// 根据省id获取对应的市
+        $("#province").change(function (index) {
+            console.log(index);
+            // alert(".....")
+            // 这里的val()后面的一对小括号别忘了，我就是因为这个找了很久的bug
+            // var id = $("#province").val();
+            // var id = $(this).attr('ItemId');
+            var myselect=document.getElementById("province");
+            let id = myselect.selectedIndex;
+            alert("id = "+ id);
+            if(id == ""){
+                return;
+            }
+            // 获取所有市
+            $.post("/frontdesk/stu_answerquestion/city/"+ id,function (data) {
+                console.log(data);
+                if(data != null){
+                    var str = '<option>请参照左表选择子类</option>\n';
+                    for (var i = 0;i < data.length;i++) {
+                        str +=  '<option th:value='+data[i].fcid+'>'+ data[i].cname +'</option>\n';
+                    }
+                    $("#city1").html(str);
+                }
+            });
+            // var id = ${this}.attr('');
+            /* $.ajax({
+                 type:"post",
+                 url:"/frontdesk/stu_answerquestion/city/" + id,
+
+                 success: function (data) {
+                     console.log(data);
+         var opp = $("#city1").empty();
+         opp.append('<option>请选择城市</option>');
+         for (let i = 0; i < data.length; i++) {
+             opp += '<option value='+data[i].id+'>'+ data[i].cname +'</option>\n';
+         /!*    opp.append("<option value='"+city[i].id+"'>" + city[i].cName + "</option>");*!/
+         }
+
+     }
+ });*/
+        });
+    });
+
+
+
+</script>
+</body>
+
+</html>

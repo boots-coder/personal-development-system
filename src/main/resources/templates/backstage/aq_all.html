@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- 页面meta -->
+  <!--  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>把三白气炸毛的学生</title>
+
+    <th:block th:replace="/backstage/common_resources::common_css"/>
+    <th:block th:replace="/backstage/common_resources::common_js"/>
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+
+
+<div class="wrapper">
+    <!-- 页面头部 -->
+    <header th:replace="~{/backstage/common_header::header}"></header>
+    <!-- 页面头部 /-->
+
+    <!-- 导航侧栏 -->
+    <aside th:replace="~{/backstage/common_aside::aside}"></aside>
+    <!-- 导航侧栏 /-->
+
+    <!-- 内容区域 -->
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
+    技术老师和我的故事
+    <div class="content-wrapper">
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                技术老师和我的故事
+                <small>问答列表</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/backstage/index}"><i
+                        class="fa fa-dashboard"></i> 返回首页</a></li>
+                <li><a th:href="@{/backstage/answerquestion/all}">问答管理</a></li>
+                <li class="active">问答列表</li>
+            </ol>
+        </section>
+        <!-- 内容头部 /-->
+
+
+
+        <!-- 正文区域 -->
+        <section class="content"> <!-- .box-body -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">列表</h3>
+                </div>
+                <div class="box-body">
+                    <!-- 数据表格 -->
+                    <div class="table-box">
+                        <!--工具栏-->
+                       <!-- <div class="pull-left">
+                            <div class="form-group form-inline">
+                                <div class="btn-group">
+                                    <a th:href="@{/backstage/stu_dele}">
+                                        <button type="button" class="btn btn-default" title="删除">
+                                            <i class="fa fa-file-o"></i> 删除
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--数据列表-->
+                        <table id="dataList"
+                               class="table table-bordered table-striped table-hover dataTable">
+                            <thead>
+                            <tr>
+                                <th class="" style="padding-right:0px;">
+                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                                </th>
+                                <!--<th>ID</th>-->
+                                <th>学生姓名</th>
+                                <th>问题描述</th>
+                                <th>提问日期</th>
+                                <!--<th>答疑教师姓名</th>-->
+                                <th>回答日期</th>
+                                <th>答案</th>
+                                <th>分类</th>
+                                <th>是否解决</th>
+                                <th>评分</th>
+                                <th>操作</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="aq:${aqPage.records}">
+                                <td><input name="ids" type="checkbox"></td>
+                                <td th:text="${aq.stuName}"></td>
+                                <td >…</td>
+                              <!--  <td th:text="${aq.des}"></td>-->
+                                <td th:text="${aq.qdate}"></td>
+                                <td th:text="${aq.ansdate}"></td>
+                                <td >…</td>
+                                <!--<td th:text="${aq.answer}"></td>-->
+                                <td th:text="${aq.cate}"></td>
+                                <td th:text="${aq.sovelStatus}"></td>
+                                <td th:text="${aq.marks}"></td>
+                                <td class="text-center">
+                                     <a th:href="@{/backstage/answerquestion/check(ansid=${aq.ansid})}" class="btn bg-green btn-xs">查看详情</a>
+                                    <a th:href="@{/backstage/answerquestion/addTo(ansid=${aq.ansid})}" class="btn bg-green btn-xs">添加为常见问题</a>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--数据列表/-->
+                    </div>
+                    <!-- 数据表格 /-->
+                </div>
+                <!-- .box-footer-->
+                <div class="box-footer">
+                    <div class="pull-left">
+                        <div class="form-group form-inline">
+                            总共<span th:text="${aqPage.pages}"></span>页，共<span th:text="${aqPage.total}"></span>条数据。
+                        </div>
+                    </div>
+                    <div class="box-tools pull-right">
+                        <ul class="pagination"></ul>
+                    </div>
+                </div>
+                <!-- /.box-footer-->
+            </div>
+        </section>
+        <!-- 正文区域 /-->
+
+
+
+
+    </div>
+    <!-- @@close -->
+    <!-- 内容区域 /-->
+    <!-- 底部导航 -->
+    <footer th:replace="~{/backstage/common_footer::footer}"></footer>
+    <!-- 底部导航 /-->
+
+</div>
+
+
+<!-- 在js中获取Model的值 -->
+<script th:inline="javascript">
+    $(function () {
+        var currentPage = [[${aqPage.current}]]; // 当前页
+        var pages = [[${aqPage.pages}]]; // 总页数
+
+        // 分页插件
+        $('.pagination').bootstrapPaginator({
+            bootstrapMajorVersion: 3, // bootstrap版本
+            currentPage: currentPage, // 当前页
+            totalPages: pages, // 总页数
+            numberOfPages: 5, // 最多显示多少页
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "上一页";
+                    case "next":
+                        return "下一页";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return page;
+                }
+            },
+            onPageClicked: function (event, originalEvent, type, page) { // 点击页码执行的方法
+                location.href = "/backstage/answerquestion/all?page=" + page;
+            }
+        });
+    })
+</script>
+</body>
+
+</html>

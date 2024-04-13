@@ -1,0 +1,110 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 公共css -->
+<th:block th:fragment="common_css">
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/frontdesk/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/morris/morris.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/treeTable/jquery.treetable.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/treeTable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/select2/select2.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/colorpicker/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/frontdesk/css/style.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/ionslider/ion.rangeSlider.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/ionslider/ion.rangeSlider.skinNice.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/bootstrap-slider/slider.css">
+    <link rel="stylesheet" href="/frontdesk/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+</th:block>
+
+<!-- 公共js -->
+<th:block th:fragment="common_js">
+    <script src="/frontdesk/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="/frontdesk/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <script src="/frontdesk/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/frontdesk/plugins/raphael/raphael-min.js"></script>
+    <script src="/frontdesk/plugins/morris/morris.min.js"></script>
+    <script src="/frontdesk/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="/frontdesk/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="/frontdesk/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="/frontdesk/plugins/knob/jquery.knob.js"></script>
+    <script src="/frontdesk/plugins/daterangepicker/moment.min.js"></script>
+    <script src="/frontdesk/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/frontdesk/plugins/daterangepicker/daterangepicker.zh-CN.js"></script>
+    <script src="/frontdesk/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="/frontdesk/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="/frontdesk/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="/frontdesk/plugins/fastclick/fastclick.js"></script>
+    <script src="/frontdesk/plugins/iCheck/icheck.min.js"></script>
+    <script src="/frontdesk/plugins/adminLTE/js/app.min.js"></script>
+    <script src="/frontdesk/plugins/treeTable/jquery.treetable.js"></script>
+    <script src="/frontdesk/plugins/select2/select2.full.min.js"></script>
+    <script src="/frontdesk/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-markdown/locale/bootstrap-markdown.zh.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-markdown/js/markdown.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-markdown/js/to-markdown.js"></script>
+   <!-- <script src="/frontdesk/plugins/ckeditor/ckeditor.js"></script>-->
+    <script src="/frontdesk/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="/frontdesk/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="/frontdesk/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="/frontdesk/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/frontdesk/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="/frontdesk/plugins/chartjs/Chart.min.js"></script>
+    <script src="/frontdesk/plugins/flot/jquery.flot.min.js"></script>
+    <script src="/frontdesk/plugins/flot/jquery.flot.resize.min.js"></script>
+    <script src="/frontdesk/plugins/flot/jquery.flot.pie.min.js"></script>
+    <script src="/frontdesk/plugins/flot/jquery.flot.categories.min.js"></script>
+    <script src="/frontdesk/plugins/ionslider/ion.rangeSlider.min.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="/frontdesk/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="/frontdesk/js/bootstrap-paginator.js"></script>
+    <script src="/frontdesk/js/wangEditor.js"></script>
+    <script src="/frontdesk/js/jquery.form.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // 选择框
+            $(".select2").select2();
+
+            // WYSIHTML5编辑器
+            $(".textarea").wysihtml5({
+                locale: 'zh-CN'
+            });
+        });
+
+
+        // 设置激活菜单
+        function setSidebarActive(tagUri) {
+            var liObj = $("#" + tagUri);
+            if (liObj.length > 0) {
+                liObj.parent().parent().addClass("active");
+                liObj.addClass("active");
+            }
+        }
+
+
+        $(document).ready(function () {
+            setSidebarActive("admin-blank");
+        });
+    </script>
+
+</th:block>

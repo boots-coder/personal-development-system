@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>新增教师</title>
+    <th:block th:replace="/backstage/common_resources::common_css"></th:block>
+    <th:block th:replace="/backstage/common_resources::common_js"></th:block>
+</head>
+<body class="hold-transition skin-purple sidebar-mini">
+<header th:replace="~{/backstage/common_header::header}"></header>
+<aside th:replace="~{/backstage/common_aside::aside}"></aside>
+<div class="wrapper">
+    <div class="content-wrapper">
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                教师管理
+                <small>新增教师</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="@{/backstage/index}"><i class="fa fa-dashboard"></i> 返回首页</a></li>
+                <li><a href="@{/backstage/teacher/all}"> 教师管理</a></li>
+                <li class="active">新增教师</li>
+            </ol>
+        </section>
+        <!-- 内容头部 /-->
+
+        <!-- 正文区域 -->
+        <section class="content">
+            <form th:action="@{/backstage/teacher/add}" method="post">
+                <div class="row data-type">
+                    <div class="col-md-2 title">账号</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="账号" name="account">
+                    </div>
+                    <div class="col-md-2 title">密码</div>
+                    <div class="col-md-4 data">
+                        <input type="password" class="form-control" placeholder="密码" name="password" value="">
+                    </div>
+                    <div class="col-md-2 title">姓名</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="姓名" name="teaName">
+                    </div>
+                    <div class="col-md-2 title">性别</div>
+                    <div class="col-md-4 data">
+                        <select class="form-control" name="sex">
+                            <option >男</option>
+                            <option >女</option>
+                        </select>
+                    </div>
+                   <!-- <div class="tab-pane" id="tab-date">
+                        <div class="col-md-2 title">出生日期</div>
+                        <div class="col-md-4 data">
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="datepicker">
+                            </div>
+                        </div>
+
+                    </div>
+-->
+                    < <div class="col-md-2 title">出生日期</div>
+                    <div class="col-md-4 data">
+                        <input type="date" class="form-control" placeholder="yyyy-MM-dd" name="birthday">
+                    </div>
+
+                   <!-- <div class="col-md-2 title">聘任专业</div>
+                    <div class="col-md-4 data">
+                        <select class="form-control" name="subject">
+                            <option >Java</option>
+                            <option >python</option>
+                        </select>
+                    </div>-->
+                    <div class="col-md-2 title">聘任专业</div>
+                    <div class="col-md-4 data" >
+                        <select  id="province" class="form-control"name= "subject">
+
+                        </select>
+
+                    </div>
+                    <div class="col-md-2 title">负责区域</div>
+                    <div class="col-md-4 data" >
+                        <select   id="city1"  class="form-control" name="field">
+
+
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-2 title">聘任日期</div>
+                    <div class="col-md-4 data">
+                        <input type="date" class="form-control" placeholder="yyyy-MM-dd" name="workDate">
+                    </div>
+
+
+                    <div class="col-md-2 title">电话</div>
+                    <div class="col-md-4 data">
+                        <input type="text" class="form-control" placeholder="电话" name="phoneNum">
+                    </div>
+                    <div class="col-md-2 title">是否专职</div>
+                    <div class="col-md-4 data">
+                        <select class="form-control" name="workStatus">
+                            <option >是</option>
+                            <option >否</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 title"></div>
+                    <div class="col-md-10 data text-center">
+                        <button type="submit" class="btn bg-maroon">保存</button>
+                        <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- 正文区域 /-->
+
+    </div>
+</div>
+<footer th:replace="~{/backstage/common_footer::footer}"></footer>
+<script>
+    /*   $(document).ready(function() {
+           /!*table tree*!/
+           $("#collapse-table").treetable({
+               expandable: true
+           });
+
+       });
+   */
+
+    /*
+     $( function () {
+        // 获取所有省
+         alert(123)
+         $.post("/frontdesk/stu_answerquestion/cities",function (data) {
+             console.log(data);
+             if(data != null){
+                 var str = '<option>请选择子类</option>\n';
+                 for (var i = 0;i < data.length;i++) {
+                     str += '<option value='+data[i].id+'>'+ data[i].cName +'</option>\n';
+                 }
+                 $("#citiesss").html(str);
+             }
+         });})*/
+
+    $(function () {
+        // 获取所有省
+        $.post("/frontdesk/stu_answerquestion/provinceList",function (data) {
+            console.log(data);
+            if(data != null){
+                var str = '<option>请选择种类</option>\n';
+                for (var i = 0;i < data.length;i++) {
+                    str += '<option th:value='+data[i].id+'>'+ data[i].fcName +'</option>\n';
+                }
+                $("#province").html(str);
+            }
+        });
+        // 获取所有市
+        $.post("/frontdesk/stu_answerquestion/cityList",function (data) {
+            console.log(data);
+            if(data != null){
+                var str = '<option>请选择子类</option>\n';
+                for (var i = 0;i < data.length;i++) {
+                    str +=  '<option value='+data[i].fcid+'>'+ data[i].cname +    '</option>\n';
+                }
+                $("#city").html(str);
+            }
+        });
+// 根据省id获取对应的市
+        $("#province").change(function (index) {
+            console.log(index);
+            // alert(".....")
+            // 这里的val()后面的一对小括号别忘了，我就是因为这个找了很久的bug
+            // var id = $("#province").val();
+            // var id = $(this).attr('ItemId');
+            var myselect=document.getElementById("province");
+            let id = myselect.selectedIndex;
+            alert("id = "+ id);
+            if(id == ""){
+                return;
+            }
+            // 获取所有市
+            $.post("/frontdesk/stu_answerquestion/city/"+ id,function (data) {
+                console.log(data);
+                if(data != null){
+                    var str = '<option>请参照左表选择子类</option>\n';
+                    for (var i = 0;i < data.length;i++) {
+                        str +=  '<option th:value='+data[i].fcid+'>'+ data[i].cname +'</option>\n';
+                    }
+                    $("#city1").html(str);
+                }
+            });
+            // var id = ${this}.attr('');
+            /* $.ajax({
+                 type:"post",
+                 url:"/frontdesk/stu_answerquestion/city/" + id,
+
+                 success: function (data) {
+                     console.log(data);
+         var opp = $("#city1").empty();
+         opp.append('<option>请选择城市</option>');
+         for (let i = 0; i < data.length; i++) {
+             opp += '<option value='+data[i].id+'>'+ data[i].cname +'</option>\n';
+         /!*    opp.append("<option value='"+city[i].id+"'>" + city[i].cName + "</option>");*!/
+         }
+
+     }
+ });*/
+        });
+    });
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coder.study.mapper.AQMapper">
+    <resultMap id="aqMapper" type="com.coder.study.pojo.Answerquestion">
+
+        <id property="ansid" column="ansid"></id>    <!-- 属性名和列名做映射-->
+        <result property="des" column="des"></result><!-- 属性名和列名做映射-->
+        <result property="answer" column="answer"></result>
+        <result property="stuName" column="stuName"></result>
+        <result property="ansdate" column="ansdate"></result>
+        <result property="qdate" column="qdate"></result><!-- 属性名和列名做映射-->
+        <result property="cate" column="cate"></result><!-- 属性名和列名做映射-->
+    </resultMap>
+
+
+    <select id="findDesc" parameterType="int" resultMap="aqMapper">
+     SELECT *
+     FROM answerquestion
+         LEFT JOIN category
+              ON answerquestion.cate = category.cName
+     WHERE answerquestion.ansid = #{ansid}
+  </select>
+</mapper>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- 页面meta -->
+  <!--  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>把三白气炸毛的学生</title>
+
+    <th:block th:replace="/frontdesk/common_resources::common_css"/>
+    <th:block th:replace="/frontdesk/common_resources::common_js"/>
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+
+
+<div class="wrapper">
+    <!-- 页面头部 -->
+    <header th:replace="~{/frontdesk/stu_common_header::header}"></header>
+    <!-- 页面头部 /-->
+
+    <!-- 导航侧栏 -->
+    <aside th:replace="~{/frontdesk/stu_common_aside::aside}"></aside>
+    <!-- 导航侧栏 /-->
+
+    <!-- 内容区域 -->
+    <!-- @@master = admin-layout.html-->
+    <!-- @@block = content -->
+
+    <div class="content-wrapper">
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                把三白气炸毛的学生们
+                <small>学生列表</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/frontdesk/stu_index}"><i
+                        class="fa fa-dashboard"></i> 返回首页</a></li>
+                <li><a th:href="@{/frontdesk/student/all}">学生管理</a></li>
+                <li class="active">学生列表</li>
+            </ol>
+        </section>
+        <!-- 内容头部 /-->
+
+
+
+        <!-- 正文区域 -->
+        <section class="content"> <!-- .box-body -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">列表</h3>
+                </div>
+                <div class="box-body">
+                    <!-- 数据表格 -->
+                    <!--<div class="table-box">
+                        &lt;!&ndash;工具栏&ndash;&gt;
+                        <div class="pull-left">
+                            <div class="form-group form-inline">
+                                <div class="btn-group">
+                                    <a th:href="@{/frontdesk/stu_dele}">
+                                        <button type="button" class="btn btn-default" title="删除">
+                                            <i class="fa fa-file-o"></i> 删除
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--数据列表-->
+                        <table id="dataList"
+                               class="table table-bordered table-striped table-hover dataTable">
+                            <thead>
+                            <tr>
+                                <!--<th class="" style="padding-right:0px;">
+                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                                </th>-->
+                                <th>ID</th>
+                                <th>昵称</th>
+                                <th>学生密码</th>
+                                <th>学生账号</th>
+                                <th>性别</th>
+                                <th>学校</th>
+                                <th>操作</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                             <!--   <td><input name="ids" type="checkbox"></td>-->
+                                <td th:text="${studentInfo.sid}"></td>
+                                <td th:text="${studentInfo.account}"></td>
+                                <td th:text="${studentInfo.password}"></td>
+                                <td th:text="${studentInfo.stuName}"></td>
+                                <td th:text="${studentInfo.sex}"></td>
+                                <td th:text="${studentInfo.school}"></td>
+                                <td class="text-center">
+                                     <a th:href="@{/frontdesk/student/edit(sid=${studentInfo.sid})}" class="btn bg-olive btn-xs">修改个人信息</a>
+                                </td>
+                             </tr>
+                            </tbody>
+                        </table>
+                        <!--数据列表/-->
+                    </div>
+                    <!-- 数据表格 /-->
+                </div>
+                <!-- .box-footer-->
+
+                <!-- /.box-footer-->
+            </div>
+        </section>
+        <!-- 正文区域 /-->
+
+
+
+
+    </div>
+    <!-- @@close -->
+    <!-- 内容区域 /-->
+    <!-- 底部导航 -->
+    <footer th:replace="~{/frontdesk/common_footer::footer}"></footer>
+    <!-- 底部导航 /-->
+
+</div>
+
+</body>
+
+</html>
